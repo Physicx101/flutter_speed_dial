@@ -36,7 +36,7 @@ class BackgroundOverlay extends AnimatedWidget {
           fit: StackFit.expand,
           children: [
             GestureDetector(
-              onTap: closeManually ? null : onTap,
+              onTap: onTap,
               child: Container(
                 decoration: BoxDecoration(
                     color: color, backgroundBlendMode: BlendMode.dstOut),
@@ -65,9 +65,9 @@ class BackgroundOverlay extends AnimatedWidget {
                     );
                     return tooltip != null && tooltip!.isNotEmpty
                         ? Tooltip(
-                            message: tooltip!,
-                            child: child,
-                          )
+                      message: tooltip!,
+                      child: child,
+                    )
                         : child;
                   }(),
                 ),
