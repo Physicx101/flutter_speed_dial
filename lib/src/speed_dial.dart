@@ -87,6 +87,9 @@ class SpeedDial extends StatefulWidget {
   /// Executed when the dial is pressed. If given, the dial only opens on long press!
   final VoidCallback? onPress;
 
+  /// Add options for onLongPress
+  final VoidCallback? onLongPress;
+
   /// If true tapping on speed dial's children will not close the dial anymore.
   final bool closeManually;
 
@@ -170,6 +173,7 @@ class SpeedDial extends StatefulWidget {
     this.shape = const StadiumBorder(),
     this.curve = Curves.fastOutSlowIn,
     this.onPress,
+    this.onLongPress,
     this.animationSpeed = 150,
     this.openCloseDial,
     this.isOpenOnStart = false,
@@ -419,7 +423,7 @@ class _SpeedDialState extends State<SpeedDial>
                 ? foregroundColorTween.lerp(_controller.value)
                 : null,
             elevation: widget.elevation,
-            onLongPress: _toggleChildren,
+            onLongPress: widget.onLongPress ?? _toggleChildren,
             callback: (_open || widget.onPress == null)
                 ? _toggleChildren
                 : widget.onPress,
